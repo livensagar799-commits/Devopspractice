@@ -15,10 +15,10 @@ CHECK_ROOT(){
 VALIDATE(){
     if [ $2 -ne 0 ]
     then
-       echo -e "\e[31m $1 not installed check it"
+       echo -e "$1 \e[31m not installed check it"
        exit 1
     else
-        echo -e "\e[32m $1 installed sucessfully"
+        echo -e " $1 installed \e[32m sucessfully"
     fi  
 }
 
@@ -28,7 +28,7 @@ dnf list installed $1
 if [ $? -ne 0 ]
 then
     echo "$1 is not intalled going to install" 
-    dnf install $1 -y
+    dnf installl $1 -y
     dnf list installed $1
     VALIDATE $1 $? 
     # dnf list installed $1 

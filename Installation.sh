@@ -10,7 +10,7 @@ CHECK_ROOT(){
     fi
 }
 
-CHECK_ROOT
+
 
 VALIDATE(){
     if [ $2 -ne 0 ]
@@ -44,7 +44,7 @@ else
      echo "$1 is intalled nothing to do"
 fi
 }
-
+CHECK_ROOT
 INSTALL_PACK $1
 # dnf list installed mysql 
 

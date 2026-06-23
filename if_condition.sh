@@ -1,7 +1,7 @@
 #!/bin/bash
 
 day=$Sunday
-if(( $day="Sunday" ))
+if[ $day="Sunday" ] 
 then
    echo "Today is Holiday"
 else

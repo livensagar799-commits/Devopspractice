@@ -2,7 +2,7 @@
 
 USERID=$(id -u)
 
-CHEKC_ROOT(){
+CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then 
         echo "Execute the script with root user"
@@ -10,23 +10,46 @@ CHEKC_ROOT(){
     fi
 }
 
-CHEKC_ROOT
+CHECK_ROOT
 
-dnf list installed mysql 
+
+INSTALL_PACK(){
+    dnf list installed $1 
 
 if [ $? -ne 0 ]
 then
-    echo "Mysql is not intalled going to install" 
-    dnf install mysql -y
-    dnf list installed mysql 
+    echo "$1 is not intalled going to install" 
+    dnf install $1 -y
+    dnf list installed $1 
     if [ $? -ne 0 ]
     then
-       echo "Mysql not installed check it"
+       echo "$1 not installed check it"
        exit 1
     else
-        echo "Mysql installed sucessfully"
+        echo "$1 installed sucessfully"
     fi      
     exit 1
 else 
-     echo "Mysql is intalled nothing to do"
+     echo "$1 is intalled nothing to do"
 fi
+}
+
+INSTALL_PACK $1
+# dnf list installed mysql 
+
+# if [ $? -ne 0 ]
+# then
+#     echo "Mysql is not intalled going to install" 
+#     dnf install mysql -y
+#     dnf list installed mysql 
+#     if [ $? -ne 0 ]
+#     then
+#        echo "Mysql not installed check it"
+#        exit 1
+#     else
+#         echo "Mysql installed sucessfully"
+#     fi      
+#     exit 1
+# else 
+#      echo "Mysql is intalled nothing to do"
+# fi

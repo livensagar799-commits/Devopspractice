@@ -12,22 +12,34 @@ CHECK_ROOT(){
 
 CHECK_ROOT
 
-
-INSTALL_PACK(){
-    dnf list installed $1 
-
-if [ $? -ne 0 ]
-then
-    echo "$1 is not intalled going to install" 
-    dnf install $1 -y
-    dnf list installed $1 
-    if [ $? -ne 0 ]
+VALIDATE(){
+ 
+    if [ $2 -ne 0 ]
     then
        echo "$1 not installed check it"
        exit 1
     else
         echo "$1 installed sucessfully"
-    fi      
+    fi  
+}
+
+INSTALL_PACK(){
+dnf list installed $1 
+
+if [ $? -ne 0 ]
+then
+    echo "$1 is not intalled going to install" 
+    dnf install $1 -y
+    dnf list installed $1
+    VALIDATE $? 
+    # dnf list installed $1 
+    # if [ $? -ne 0 ]
+    # then
+    #    echo "$1 not installed check it"
+    #    exit 1
+    # else
+    #     echo "$1 installed sucessfully"
+    # fi      
     exit 1
 else 
      echo "$1 is intalled nothing to do"

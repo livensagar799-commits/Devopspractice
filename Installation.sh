@@ -2,11 +2,15 @@
 
 USERID=$(id -u)
 
-if [ $USERID -ne 0 ]
-then
-    echo "Execute the script with root user"
-    exit 1
-fi
+CHEKC_ROOT(){
+    if [ $USERID -ne 0 ]
+    then 
+        echo "Execute the script with root user"
+        exit 1
+    fi
+}
+
+CHEKC_ROOT
 
 dnf list installed mysql 
 

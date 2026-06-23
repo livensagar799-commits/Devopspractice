@@ -15,10 +15,10 @@ CHECK_ROOT(){
 VALIDATE(){
     if [ $2 -ne 0 ]
     then
-       echo "$1 not installed check it"
+       echo -e "\e[31m $1 not installed check it"
        exit 1
     else
-        echo "$1 installed sucessfully"
+        echo -e "\e[32m $1 installed sucessfully"
     fi  
 }
 
@@ -41,7 +41,7 @@ then
     # fi      
     exit 1
 else 
-     echo "$1 is intalled nothing to do"
+     echo -e "\e[33m $1 is intalled nothing to do"
 fi
 }
 CHECK_ROOT

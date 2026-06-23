@@ -28,7 +28,7 @@ dnf list installed $1
 if [ $? -ne 0 ]
 then
     echo "$1 is not intalled going to install" 
-    dnf installl $1 -y
+    dnf install $1 -y
     dnf list installed $1
     VALIDATE $1 $? 
     # dnf list installed $1 

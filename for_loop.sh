@@ -3,7 +3,7 @@
 USERID=$(id -u)
 
 CHECK_ROOT(){
-    if ( $USERID -nq 0 )
+    if ( $USERID -ne 0 )
     then
         echo "Execute the script with root user"
     fi

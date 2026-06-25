@@ -9,18 +9,23 @@ CHECK_ROOT(){
     fi
     }
 
-USAGE(){
-    if [ $# -e 0]
-    then
-        echo "USAGE :: sh $0 packagename1 packagename2"
-    fi
-    }
+# USAGE(){
+#     if [ $# -e 0]
+#     then
+#         echo "USAGE :: sh $0 packagename1 packagename2"
+#     fi
+#     }
 
 CHECK_ROOT
 
 for package in $@
+ if [ $# -e 0]
+     then
+         echo "USAGE :: sh $0 packagename1 packagename2"
+      fi
+      
 do
-  USAGE
+  
   dnf list installed $package 
   if [ $? -ne 0]
   then

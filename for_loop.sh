@@ -1,6 +1,17 @@
 #!/bin/bash
 
-for i in {1..100}
+USERID=$(id -u)
+
+CHECK_ROOT(){
+    if ( $USERID -nq 0 )
+    then
+        echo "Execute the script with root user"
+    fi
+}
+
+CHECK_ROOT
+
+for package in &@ 
 do
-    echo $i
+  dnf intall $package -y
 done

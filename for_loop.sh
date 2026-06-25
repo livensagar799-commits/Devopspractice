@@ -17,7 +17,7 @@ CHECK_ROOT(){
 #     }
 
 CHECK_ROOT
-if [ $# -e 0 ]
+if [ $# -eq 0 ]
      then
          echo "USAGE :: sh $0 packagename1 packagename2"
       fi

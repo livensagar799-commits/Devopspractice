@@ -20,15 +20,16 @@ CHECK_ROOT
 if [ $# -eq 0 ]
      then
          echo "USAGE :: sh $0 packagename1 packagename2"
+         exit 1
       fi
 for package in $@
 do
-  
   dnf list installed $package 
-  if [ $? -ne 0]
+  if [ $? -ne 0 ]
   then
     echo "$package is not installed going to intall"
     dnf intall $package -y
+    exit 1
   else 
     echo "$package is already installed ...nothing to do"
   fi

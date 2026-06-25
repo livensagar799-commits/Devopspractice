@@ -19,7 +19,7 @@ USAGE(){
 CHECK_ROOT
 
 for package in $@
-UASAGE
+USAGE
 do
   dnf list installed $package 
   if [ $? -ne 0]

@@ -11,7 +11,7 @@ CHECK_ROOT(){
 
 CHECK_ROOT
 
-for package in &@ 
+for package in $@
 do
   dnf intall $package -y
 done

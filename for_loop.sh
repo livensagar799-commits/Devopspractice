@@ -7,12 +7,14 @@ CHECK_ROOT(){
     then
         echo "Execute the script with root user"
     fi
-}
+    }
+
 USAGE(){
     if [ $# -e 0]
     then
         echo "USAGE :: sh $0 packagename1 packagename2"
-}
+    fi
+    }
 
 CHECK_ROOT
 

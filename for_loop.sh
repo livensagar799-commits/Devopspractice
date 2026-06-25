@@ -7,11 +7,24 @@ CHECK_ROOT(){
     then
         echo "Execute the script with root user"
     fi
-
+}
+USAGE(){
+    if [ $# -e 0]
+    then
+        echo "USAGE :: sh $0 packagename1 packagename2"
+}
 
 CHECK_ROOT
 
 for package in $@
+UASAGE
 do
-  dnf intall $package -y
+  dnf list installed $package 
+  if [ $? -ne 0]
+  then
+    echo "$package is not installed going to intall"
+    dnf intall $package -y
+  else 
+    echo "$package is already installed ...nothing to do"
+  fi
 done

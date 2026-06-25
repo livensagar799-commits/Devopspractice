@@ -1,5 +1,5 @@
 #!/bin/bash
 
-for(i=0;i<=100,i++){
-    print i;
+for i in ( 1..100 ){
+    echo $1
 }

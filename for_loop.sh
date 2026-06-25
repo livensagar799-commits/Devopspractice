@@ -17,13 +17,11 @@ CHECK_ROOT(){
 #     }
 
 CHECK_ROOT
-
-for package in $@
- if [ $# -e 0]
+if [ $# -e 0]
      then
          echo "USAGE :: sh $0 packagename1 packagename2"
       fi
-      
+for package in $@
 do
   
   dnf list installed $package 

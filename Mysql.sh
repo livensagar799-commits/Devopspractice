@@ -5,6 +5,8 @@ Scritpname=$(echo $0 || cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_PATH/$Scritpname-$TIMESTAMP.log"
 
+mkdir $LOG_PATH
+
 USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"

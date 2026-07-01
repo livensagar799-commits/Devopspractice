@@ -5,6 +5,8 @@ Scritpname=$(echo $0 || cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_PATH/$Scritpname-$TIMESTAMP.log"
 
+USERID=$(id -u)
+
 CHECK_ROOT(){
     if [ $USERID -ne 0 ] 
     then
@@ -25,7 +27,6 @@ VALIDATE(){
 CHECK_ROOT
 mkdir $LOG_PATH
 
-USERID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 N="\e[0m"

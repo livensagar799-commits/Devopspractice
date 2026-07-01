@@ -5,14 +5,6 @@ Scritpname=$(echo $0 || cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_PATH/$Scritpname-$TIMESTAMP.log"
 
-mkdir $LOG_PATH
-
-USERID=$(id -u)
-R="\e[31m"
-G="\e[32m"
-N="\e[0m"
-Y="\e[33m"
-
 CHECK_ROOT(){
     if [ $USERID -ne 0 ] 
     then
@@ -20,8 +12,6 @@ CHECK_ROOT(){
         exit 1
     fi
 }
-
-
 
 VALIDATE(){
     if [ $1 -ne ]
@@ -33,6 +23,13 @@ VALIDATE(){
 }
 
 CHECK_ROOT
+mkdir $LOG_PATH
+
+USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+Y="\e[33m"
 
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 

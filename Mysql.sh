@@ -25,7 +25,7 @@ VALIDATE(){
 }
 
 CHECK_ROOT
-mkdir $LOG_PATH
+mkdir $LOG_PATH &&>>$LOG_FILE
 
 R="\e[31m"
 G="\e[32m"

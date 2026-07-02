@@ -10,7 +10,7 @@ USERID=$(id -u)
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "persmission denied" | tee -a &>>LOG_FILE
+        echo "persmission denied" | tee -a $LOG_FILE
         exit 1
     fi
 }
@@ -20,9 +20,9 @@ CHECK_ROOT
 VALIDATE(){
     if [ $1 -ne 0 ]
     then 
-        echo " $2 is failed " | tee -a &>>LOG_FILE
+        echo " $2 is failed " | tee -a $LOG_FILE
     else 
-        echo " $2 is success " | tee -a &>>LOG_FILE
+        echo " $2 is success " | tee -a $LOG_FILE
 }
 
 USER_VALIDATION(){
@@ -38,11 +38,11 @@ USER_VALIDATION(){
 mkdir -p $LOG_PATH
 
 dnf module disable nodejs -y &>>LOG_FILE
-VALIDATE $? "disabled nodejs"  tee -a &>>LOG_FILE
+VALIDATE $? "disabled nodejs"  
 dnf module enable nodejs:20 -y  &>>LOG_FILE
-VALIDATE $? "Enabled nodejs:20" tee -a &>>LOG_FILE
+VALIDATE $? "Enabled nodejs:20" 
 dnf install nodejs -y  &>>LOG_FILE
-VALIDATE $? "Nodejs installed" tee -a &>>LOG_FILE
+VALIDATE $? "Nodejs installed" 
 
 
 USER_VALIDATION expense 

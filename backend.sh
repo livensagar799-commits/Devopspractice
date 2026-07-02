@@ -26,16 +26,7 @@ VALIDATE(){
     fi
 }
 
-USER_VALIDATION(){
-    id -$1
-    if [ $? -e 0]
-    then
-        echo "user  $1 created successfully "
-        exit 1
-    else
-        echo "user $1 created successfully "
-    fi
-}
+
 mkdir -p $LOG_PATH
 
 dnf module disable nodejs -y &>>LOG_FILE
@@ -46,7 +37,15 @@ dnf install nodejs -y  &>>LOG_FILE
 VALIDATE $? "Nodejs installed" 
 
 
-USER_VALIDATION expense 
+id expense &>>$LOG_FILE
+if [ $? -ne 0 ]
+then
+    echo -e "expense user not exists... Creating "
+    useradd expense &>>$LOG_FILE
+    VALIDATE $? "Creating expense user"
+else
+    echo -e "expense user already exists.. SKIPPING "
+fi
 
 mkdir /app
 VALIDATE $? "directory created"

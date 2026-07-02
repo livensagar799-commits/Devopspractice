@@ -23,6 +23,7 @@ VALIDATE(){
         echo " $2 is failed " | tee -a $LOG_FILE
     else 
         echo " $2 is success " | tee -a $LOG_FILE
+    fi
 }
 
 USER_VALIDATION(){

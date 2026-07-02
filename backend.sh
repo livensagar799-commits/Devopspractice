@@ -49,25 +49,29 @@ fi
 
 mkdir /app
 VALIDATE $? "directory created"
+
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>LOG_FILE
 VALIDATE $? "Source code downloaded"
+
 cd /app
-rm -rf *
+rm -rf /aap/*
+
 unzip /tmp/backend.zip &>>LOG_FILE
+
 npm install &>>LOG_FILE
 VALIDATE $? "npm installed"
 cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
+
+
+dnf install mysql -y &>>LOG_FILE
+VALIDATE $? "Mysql installed"
+mysql -h mysql.livenawsdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOG_FILE
+VALIDATE $? "password setup "
+
 systemctl daemon-reload &>>LOG_FILE
 VALIDATE $? " daemon reloaded "
 systemctl start backend &>>LOG_FILE
 VALIDATE $? "backend started"
 systemctl enable backend &>>LOG_FILE
 VALIDATE $? "backend enabled"
-
-dnf install mysql -y &>>LOG_FILE
-VALIDATE $? "Mysql installed"
-mysql -h mysql.livenawsdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOG_FILE
-VALIDATE $? "password setup "
-systemctl restart backend &>>LOG_FILE
-VALIDATE $? "backend restarted"
 

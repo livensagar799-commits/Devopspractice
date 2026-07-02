@@ -26,7 +26,7 @@ VALIDATE(){
     fi
 }
 
-echo "Script started executing"
+echo "Script started executing $TIMESTAMP"
 
 mkdir -p $LOG_PATH
 

@@ -54,7 +54,7 @@ curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expen
 VALIDATE $? "Source code downloaded"
 
 cd /app
-rm -rf /aap/*
+rm -rf /app/*
 
 unzip /tmp/backend.zip &>>LOG_FILE
 

@@ -36,8 +36,13 @@ echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 dnf install mysql-server -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL Server"
+
 systemctl enable mysqld
 VALIDATE $? "Enabled mysqld"
+
+systemctl start mysqld &>>$LOG_FILE
+VALIDATE $? "Started MySQL server"
+
 mysql -h mysql.livenawsdevops.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
 if [ $? -ne 0 ]
 then

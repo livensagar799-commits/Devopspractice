@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LOG_PATH="/var/log/expense"
-Scritpname=$(echo $0 || cut -d "." -f1)
+Scritpname=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_PATH/$Scritpname-$TIMESTAMP.log"
 
@@ -25,7 +25,7 @@ VALIDATE(){
 }
 
 CHECK_ROOT
-mkdir -p $LOG_PATH &>>$LOG_FILE
+mkdir -p $LOG_PATH &>>$LOG_FILE 
 
 R="\e[31m"
 G="\e[32m"

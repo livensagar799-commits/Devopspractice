@@ -10,7 +10,7 @@ USERID=$(id -u)
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "persmission denied" | tee -a $LOG_FILE
+        echo "persmission denied" 
         exit 1
     fi
 }

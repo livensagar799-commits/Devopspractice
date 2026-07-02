@@ -30,11 +30,11 @@ echo "Script started executing $TIMESTAMP"
 
 mkdir -p $LOG_PATH
 
-dnf module disable nodejs -y &>>LOG_FILE
+dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "disabled nodejs"  
-dnf module enable nodejs:20 -y  &>>LOG_FILE
+dnf module enable nodejs:20 -y  &>>$LOG_FILE
 VALIDATE $? "Enabled nodejs:20" 
-dnf install nodejs -y  &>>LOG_FILE
+dnf install nodejs -y  &>>$LOG_FILE
 VALIDATE $? "Nodejs installed" 
 
 
@@ -57,29 +57,23 @@ VALIDATE $? "Source code downloaded"
 cd /app
 rm -rf /app/*
 
-unzip /tmp/backend.zip &>>LOG_FILE
+unzip /tmp/backend.zip &>>$LOG_FILE
 
-npm install &>>LOG_FILE
+npm install &>>$LOG_FILE
 VALIDATE $? "npm installed"
 cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
 
 
-dnf install mysql -y &>>LOG_FILE
+dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Mysql installed"
-
-systemctl enable mysqld
-VALIDATE $? "Enabled mysqld"
-
-systemctl start mysqld &>>$LOG_FILE
-VALIDATE $? "Started MySQL server"
 
 mysql -h mysql.livenawsdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOG_FILE
 VALIDATE $? "password setup "
 
-systemctl daemon-reload &>>LOG_FILE
+systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? " daemon reloaded "
-systemctl start backend &>>LOG_FILE
+systemctl start backend &>>$LOG_FILE
 VALIDATE $? "backend started"
-systemctl enable backend &>>LOG_FILE
+systemctl enable backend &>>$LOG_FILE
 VALIDATE $? "backend enabled"
 

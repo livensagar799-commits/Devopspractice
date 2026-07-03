@@ -8,7 +8,7 @@ USERID=$(id -u)
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "Execute the script root"
+        echo "Permission denied"
         exit 1
     fi
 }
@@ -23,7 +23,7 @@ VALIDATE(){
 }
 
 CHECK_ROOT
-
+echo " Script started executing $TIMESTAMP "
 mkdir -p $LOG_PATH 
 
 LOG_FILE="$LOG_PATH/$SCRIPT_NAME-$TIMESTAMP.log"

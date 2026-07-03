@@ -6,7 +6,7 @@ TIMESTAMP=$(date)
 USERID=$(id -u)
 
 CHECK_ROOT(){
-    if [ $USERID -ne 0]
+    if [ $USERID -ne 0 ]
     then
         echo "Execute the script root"
         exit 1

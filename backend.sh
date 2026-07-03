@@ -67,8 +67,19 @@ cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.serv
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Mysql installed"
 
+#
+
 mysql -h mysql.livenawsdevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>LOG_FILE
-VALIDATE $? "password setup "
+if [ $? -ne 0 ]
+then
+    echo "MySQL root password is not setup, setting now" &>>$LOG_FILE
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "Setting UP root password"
+else 
+    echo -e "MySQL root password is already setup... SKIPPING " | tee -a $LOG_FILE
+fi
+
+
 
 systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? " daemon reloaded "

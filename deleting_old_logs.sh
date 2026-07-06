@@ -18,11 +18,7 @@ Log_Files=$(find $SOURCE_DIR -name "*.log" -mtime +14)
 echo "Files : $Log_Files"
 
 
-# while IFS= read -r file
-# do
-#     echo "Deleting file: $file"
-#     rm -rf -- "$file"
-# done <<< "$Log_Files"
+
 
 while IFS= read -r files
 do

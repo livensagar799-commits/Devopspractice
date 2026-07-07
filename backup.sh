@@ -20,14 +20,18 @@ fi
 
 if [ -d $SOURCE_DIR ]
 then
+    echo "$SOURCE_DIR  exist"
+else
     echo "$SOURCE_DIR does not exist"
-    exit 1
+    exit 1 
 fi
 
-if [ -d $DEST_DIR ]
+if [ ! -d $DEST_DIR ]
 then
     echo "$DEST_DIR does not exist"
     exit 1
+else
+    echo "$DEST_DIR does not exist"
 fi
 
 

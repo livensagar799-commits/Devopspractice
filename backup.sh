@@ -32,8 +32,29 @@ then
     exit 1
 else
     echo "$DEST_DIR  exist"
-   
 fi
+
+Log_Files=$(find $SOURCE_DIR -name "*.log" -mtime +14)
+
+if [ ! -z $Log_Files  ]
+then
+    echo " files more than $DAYS are present"
+    ZIP_FILES="$DEST_DIR/app_log-$TIMESTAMP.zip"
+    find $SOURCE_DIR -name "*.log" -mtime +14 | zip $ZIP_FILES -@
+
+    if [ -f $ZIP_FILES ]
+    then 
+        echo " files are zipped"
+    else
+        echo " zipping files failed"
+    fi
+        
+else
+    echo "fiels more than $DYAS does not present"
+fi
+
+    
+
 
 
 

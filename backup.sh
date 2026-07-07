@@ -9,7 +9,7 @@ TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 
 USAGE (){
     echo "USAGE : sh 19-backup.sh <source> <destination> <days(optional)>"
-    ecit 1
+    exit 1
 }
 
 if [ $# -lt 2 ]

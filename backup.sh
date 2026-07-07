@@ -28,10 +28,10 @@ fi
 
 if [ ! -d $DEST_DIR ]
 then
-    echo "$DEST_DIR does not exist"
-    exit 1
+    echo "$DEST_DIR does exist"
 else
     echo "$DEST_DIR does not exist"
+    exit 1
 fi
 
 
